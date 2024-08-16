@@ -1,6 +1,11 @@
-import 'package:flutter_instagram_clone/app/app.dart';
+import 'package:api_repository/api_repository.dart';
+import 'package:flutter_instagram_clone/app/view/app.dart';
 import 'package:flutter_instagram_clone/bootstrap.dart';
 
 void main() {
-  bootstrap(() => const AppView());
+  const apiRepository = ApiRepository();
+  bootstrap(
+    (powersyncRepository) => const App(apiRepository: apiRepository),
+    isDev: false,
+  );
 }

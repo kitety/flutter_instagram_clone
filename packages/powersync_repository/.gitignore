@@ -42,10 +42,3 @@ app.*.map.json
 
 # Test related
 coverage
-# Env relate
-.env.dev
-.env.prod
-
-# Generated env
-lib/src/env.dev.g.dart
-lib/src/env.prod.g.dart

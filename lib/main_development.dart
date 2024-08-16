@@ -4,5 +4,8 @@ import 'package:flutter_instagram_clone/bootstrap.dart';
 
 void main() {
   const apiRepository = ApiRepository();
-  bootstrap(() => const App(apiRepository: apiRepository));
+  bootstrap(
+    (powersyncRepository) => const App(apiRepository: apiRepository),
+    isDev: true,
+  );
 }
