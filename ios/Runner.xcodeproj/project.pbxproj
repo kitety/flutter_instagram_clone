@@ -538,6 +538,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				GOOGLE_INFO_URL = com.googleusercontent.apps.239491038093-qqcbvqmuj0gvf9emfgdgtfknkndn7jp2;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -631,6 +632,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kitety.flutter_instagram_clone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
+				GOOGLE_INFO_URL = com.googleusercontent.apps.239491038093-qqcbvqmuj0gvf9emfgdgtfknkndn7jp2;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -720,6 +722,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kitety.flutter_instagram_clone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
+				GOOGLE_INFO_URL = com.googleusercontent.apps.239491038093-qqcbvqmuj0gvf9emfgdgtfknkndn7jp2;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -815,6 +818,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				GOOGLE_INFO_URL = com.googleusercontent.apps.767205743715-6h91b0lbg8e201eh2keivu53vohm5jbr;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -906,6 +910,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kitety.flutter_instagram_clone.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
+				GOOGLE_INFO_URL = com.googleusercontent.apps.767205743715-6h91b0lbg8e201eh2keivu53vohm5jbr;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -997,6 +1002,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kitety.flutter_instagram_clone.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
+				GOOGLE_INFO_URL = com.googleusercontent.apps.767205743715-6h91b0lbg8e201eh2keivu53vohm5jbr;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1092,6 +1098,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				GOOGLE_INFO_URL = com.googleusercontent.apps.1061855145295-qvkt4fg82gvl82jn2vjhv97i2k54d9gs;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1185,6 +1192,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kitety.flutter_instagram_clone.stg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
+				GOOGLE_INFO_URL = com.googleusercontent.apps.1061855145295-qvkt4fg82gvl82jn2vjhv97i2k54d9gs;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1274,6 +1282,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kitety.flutter_instagram_clone.stg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
+				GOOGLE_INFO_URL = com.googleusercontent.apps.1061855145295-qvkt4fg82gvl82jn2vjhv97i2k54d9gs;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
