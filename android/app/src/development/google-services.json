@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "767205743715",
+    "project_id": "flutter-instagram-clone-f7e4b",
+    "storage_bucket": "flutter-instagram-clone-f7e4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767205743715:android:82f26cfb3d9c8dadee6c56",
+        "android_client_info": {
+          "package_name": "com.kitety.flutter_instagram_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767205743715-offr4elb5sur8tvgbvne4e7at13ngjk8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCvDMNu1z7FtWsTUs6-vDNzvAwNFDeXs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767205743715-offr4elb5sur8tvgbvne4e7at13ngjk8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "767205743715-6h91b0lbg8e201eh2keivu53vohm5jbr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kitety.flutterInstagramClone.dev"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767205743715:android:93c8f77a302853edee6c56",
+        "android_client_info": {
+          "package_name": "com.kitety.flutter_instagram_clone_dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767205743715-offr4elb5sur8tvgbvne4e7at13ngjk8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCvDMNu1z7FtWsTUs6-vDNzvAwNFDeXs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767205743715-offr4elb5sur8tvgbvne4e7at13ngjk8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "767205743715-6h91b0lbg8e201eh2keivu53vohm5jbr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kitety.flutterInstagramClone.dev"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

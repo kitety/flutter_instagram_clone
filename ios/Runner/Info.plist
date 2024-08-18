@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>GOOGLESERVICE_INFO_PLIST</key>
+	<string>$(GOOGLESERVICE_INFO_PLIST)</string>
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
@@ -29,13 +31,13 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-		<key>CFBundleTypeRole</key>
-		<string>Editor</string>
-		<key>CFBundleURLSchemes</key>
-		<array>
-			<string>io.supabase.flutterquickstart</string>
-			<string>com.googleusercontent.apps.252024091655-mbgan2drcc8kt01ice9jn8ihng58lkfa</string>
-		</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>io.supabase.flutterquickstart</string>
+				<string>com.googleusercontent.apps.252024091655-mbgan2drcc8kt01ice9jn8ihng58lkfa</string>
+			</array>
 		</dict>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
