@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/l10n/l10n.dart';
-import 'package:flutter_instagram_clone/todos/views/todos_page.dart';
 
 class AppView extends StatelessWidget {
   const AppView({super.key});
@@ -8,6 +7,7 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -16,7 +16,11 @@ class AppView extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const TodosPage(),
+      home: const SafeArea(
+        child: Scaffold(
+          body: Text('Hello World'),
+        ),
+      ),
     );
   }
 }
