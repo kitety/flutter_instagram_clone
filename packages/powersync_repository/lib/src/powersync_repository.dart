@@ -5,6 +5,10 @@ import 'package:powersync/powersync.dart';
 import 'package:shared/shared.dart' as shared;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+/// Env value signature that can be used to get an environment value, base
+/// on provided [Env].
+typedef EnvValue = String Function(Env env);
+
 /// Postgres Response codes that we cannot recover from by retrying.
 final List<RegExp> fatalResponseCodes = [
   // Class 22 — Data Exception
@@ -20,13 +24,13 @@ final List<RegExp> fatalResponseCodes = [
 /// Use Supabase for authentication and data upload.
 class SupabaseConnector extends PowerSyncBackendConnector {
   /// {@macro supabase_connector}
-  SupabaseConnector(this.db, {required this.isDev});
+  SupabaseConnector(this.db, {required this.env});
 
   /// PowerSync main database.
   final PowerSyncDatabase db;
 
-  /// Represents whether should use dev environment or prod.
-  final bool isDev;
+  /// Environment values.
+  final EnvValue env;
 
   Future<void>? _refreshFuture;
 
@@ -53,7 +57,7 @@ class SupabaseConnector extends PowerSyncBackendConnector {
         ? null
         : DateTime.fromMillisecondsSinceEpoch(session.expiresAt! * 1000);
     return PowerSyncCredentials(
-      endpoint: isDev ? EnvDev.powerSyncUrl : EnvProd.powerSyncUrl,
+      endpoint: env(Env.powerSyncUrl),
       token: token,
       userId: userId,
       expiresAt: expiresAt,
@@ -137,19 +141,25 @@ class SupabaseConnector extends PowerSyncBackendConnector {
 /// {@template power_sync_repository}
 /// A package that manages connection to the PowerSync cloud service and
 /// database.
+///
+/// The [PowerSyncRepository] class is responsible for managing the local
+/// database and interacting with the Supabase client.
 /// {@endtemplate}
 class PowerSyncRepository {
-  /// {@macro power_sync_repository}
-  PowerSyncRepository({this.isDev = false});
+  /// Initializes a new instance of the [PowerSyncRepository] class.
+  PowerSyncRepository({required this.env});
 
-  /// Wether environemnt should be dev.
-  final bool isDev;
+  /// Environment values.
+  final EnvValue env;
 
   bool _isInitialized = false;
 
   late final PowerSyncDatabase _db;
 
-  /// Initializes database and opens a new instance of local database.
+  /// The Supabase client.
+  late final supabase = Supabase.instance.client;
+
+  /// Initializes the local database and opens a new instance of the database.
   Future<void> initialize({bool offlineMode = false}) async {
     if (!_isInitialized) {
       await _openDatabase();
@@ -157,7 +167,7 @@ class PowerSyncRepository {
     }
   }
 
-  /// Access to the PowerSync database.
+  /// Returns the PowerSync database instance.
   PowerSyncDatabase db() {
     if (!_isInitialized) {
       throw Exception(
@@ -167,43 +177,43 @@ class PowerSyncRepository {
     return _db;
   }
 
-  /// The [Supabase] client instance.
-  late final supabase = Supabase.instance.client;
-
-  /// Whether user is logger in.
+  /// Checks if a user is logged in.
   bool isLoggedIn() {
     return supabase.auth.currentSession?.accessToken != null;
   }
 
-  /// Local database relative directory.
+  /// Returns the relative directory of the local database.
   Future<String> getDatabasePath() async {
     final dir = await getApplicationSupportDirectory();
     return join(dir.path, 'flutter-instagram-offline-first.db');
   }
 
+  /// Loads the Supabase client with the provided environment values.
   Future<void> _loadSupabase() async {
     await Supabase.initialize(
-      url: isDev ? EnvDev.supabaseUrl : EnvProd.supabaseUrl,
-      anonKey: isDev ? EnvDev.supabaseAnonKey : EnvProd.supabaseAnonKey,
+      url: env(Env.supabaseUrl),
+      anonKey: env(Env.supabaseAnonKey),
       authOptions: const FlutterAuthClientOptions(
         authFlowType: AuthFlowType.implicit,
       ),
     );
   }
 
+  /// Opens the local database, initializes the Supabase client, and connects
+  /// to the database if the user is logged in.
   Future<void> _openDatabase() async {
-    _db =
-        PowerSyncDatabase(schema: shared.schema, path: await getDatabasePath());
+    _db = PowerSyncDatabase(
+      schema: shared.schema,
+      path: await getDatabasePath(),
+    );
     await _db.initialize();
 
     await _loadSupabase();
 
-    SupabaseConnector? currentConnector = SupabaseConnector(_db, isDev: isDev);
+    SupabaseConnector? currentConnector;
 
     if (isLoggedIn()) {
-      // If the user is already logged in, connect immediately.
-      // Otherwise, connect once logged in.
-      currentConnector = SupabaseConnector(_db, isDev: isDev);
+      currentConnector = SupabaseConnector(_db, env: env);
       await _db.connect(connector: currentConnector);
     }
 
@@ -211,44 +221,52 @@ class PowerSyncRepository {
       final event = data.event;
       if (event == AuthChangeEvent.signedIn ||
           event == AuthChangeEvent.passwordRecovery) {
-        shared.logD('Connect to powersync');
-        // Connect to PowerSync when the user is signed in
-        currentConnector = SupabaseConnector(_db, isDev: isDev);
+        shared.logD('Connect to PowerSync');
+        currentConnector = SupabaseConnector(_db, env: env);
         await _db.connect(connector: currentConnector!);
       } else if (event == AuthChangeEvent.signedOut) {
-        // Implicit sign out - disconnect, but don't delete data
         currentConnector = null;
         await _db.disconnect();
       } else if (event == AuthChangeEvent.tokenRefreshed) {
-        // Supabase token refreshed - trigger token refresh for PowerSync.
         await currentConnector?.prefetchCredentials();
       }
     });
   }
 
-  /// Broadcasts the [Supabase] auth state changes, whenever user signs/logs in,
-  /// logs out, or when refresh token refreshes.
+  /// Returns a stream of authentication state changes from the Supabase client.
   Stream<AuthState> authStateChanges() =>
       supabase.auth.onAuthStateChange.asBroadcastStream();
 
   /// Updates the user app metadata.
-  Future<void> updateUser(Object? data) =>
-      supabase.auth.updateUser(UserAttributes(data: data));
+  Future<void> updateUser({
+    String? email,
+    String? phone,
+    String? password,
+    String? nonce,
+    Object? data,
+  }) =>
+      supabase.auth.updateUser(
+        UserAttributes(
+          email: email,
+          phone: phone,
+          password: password,
+          nonce: nonce,
+          data: data,
+        ),
+      );
 
-  /// Sends a request to the [Supabase] that ensured that the email exists.
-  /// If it doesn't, it throws an error.
-  ///
-  /// If the email exists, the reset password email in sent to the user.
-  /// He can provide the token he got from the email he recieved along with
-  /// a new password.
-  ///
-  /// Supabase changes the password to a provided one. After all user can
-  /// sign in with the new password.
-  Future<void> resetPassword({required String email, String? redirectTo}) =>
+  /// Sends a password reset email to the specified email address.
+  Future<void> resetPassword({
+    required String email,
+    String? redirectTo,
+  }) =>
       supabase.auth.resetPasswordForEmail(email, redirectTo: redirectTo);
 
-  /// Verifies OTP token.
-  Future<void> verifyOTP({required String token, required String email}) =>
+  /// Verifies the OTP token for password recovery.
+  Future<void> verifyOTP({
+    required String token,
+    required String email,
+  }) =>
       supabase.auth.verifyOTP(
         email: email,
         token: token,

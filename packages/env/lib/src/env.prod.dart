@@ -5,7 +5,7 @@ part 'env.prod.g.dart';
 /// {@template env}
 /// A repository that manage environment variables
 /// {@endtemplate}
-@Envied(path: '.env.dev', obfuscate: true)
+@Envied(path: '.env.prod', obfuscate: true)
 abstract class EnvProd {
   /// Supabase url secret.
   @EnviedField(varName: 'SUPABASE_URL', obfuscate: true)
