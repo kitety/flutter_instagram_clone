@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:env/env.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/app/app.dart';
@@ -76,7 +77,7 @@ class GoogleSignInButton extends StatelessWidget {
         'Google Sign in',
         style: Theme.of(context).textTheme.headlineSmall,
       ),
-      icon: const Icon(Icons.auto_awesome),
+      icon: Assets.icons.google.svg(height: 28),
     );
   }
 }
