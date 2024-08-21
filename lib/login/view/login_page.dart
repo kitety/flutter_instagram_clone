@@ -61,23 +61,33 @@ class GoogleSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      onPressed: () async {
-        try {
-          await _googleSignIn();
-        } catch (error, stackTrace) {
-          logE(
-            'Failed to login with Google',
-            error: error,
-            stackTrace: stackTrace,
-          );
-        }
+    return Tappable.scaled(
+      borderRadius: BorderRadius.circular(24),
+      backgroundColor: context.theme.focusColor,
+      scaleStrength: ScaleStrength.xxxs,
+      scaleAlignment: Alignment.bottomCenter,
+      onTap: () async {
+        logI('Tap11');
+        // try {
+        //   await _googleSignIn();
+        // } catch (error, stackTrace) {
+        //   logE(
+        //     'Failed to login with Google',
+        //     error: error,
+        //     stackTrace: stackTrace,
+        //   );
+        // }
       },
-      label: Text(
-        'Google Sign in',
-        style: Theme.of(context).textTheme.headlineSmall,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md,
+          vertical: AppSpacing.sm,
+        ),
+        child: Text(
+          'Google Sign in',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
       ),
-      icon: Assets.icons.google.svg(height: 28),
     );
   }
 }
