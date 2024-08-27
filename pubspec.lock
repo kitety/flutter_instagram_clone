@@ -211,6 +211,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.4+1"
+  equatable:
+    dependency: "direct main"
+    description:
+      name: equatable
+      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -351,6 +359,21 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  form_fields:
+    dependency: "direct main"
+    description:
+      path: "packages/form_fields"
+      relative: true
+    source: path
+    version: "0.1.0+1"
+  formz:
+    dependency: transitive
+    description:
+      name: formz
+      sha256: ed92f501f4a44b1da9137a025007df773b3732147b413c464158ecd997612ab6
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.1"
   frontend_server_client:
     dependency: transitive
     description:
@@ -1323,5 +1346,5 @@ packages:
     source: hosted
     version: "2.0.2"
 sdks:
-  dart: ">=3.4.0 <4.0.0"
+  dart: ">=3.5.0 <4.0.0"
   flutter: ">=3.22.0"
