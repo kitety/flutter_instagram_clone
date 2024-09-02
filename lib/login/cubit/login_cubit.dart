@@ -97,7 +97,9 @@ class LoginCubit extends Cubit<LoginState> {
     emit(newState);
 
     if (!isFormValid) return;
-    try {} catch (error, stackTrace) {
+    try {
+      // login user
+    } catch (error, stackTrace) {
       addError(error, stackTrace);
     }
   }

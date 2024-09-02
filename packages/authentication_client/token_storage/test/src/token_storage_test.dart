@@ -2,9 +2,9 @@
 import 'package:test/test.dart';
 
 void main() {
-  group('AuthenticationClient', () {
+  group('TokenStorage', () {
     test('can be instantiated', () {
-      // expect(AuthenticationClient(), isNotNull);
+      // expect(TokenStorage(), isNotNull);
     });
   });
 }

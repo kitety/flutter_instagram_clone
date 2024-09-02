@@ -2,9 +2,8 @@
 import 'package:test/test.dart';
 
 void main() {
-  group('AuthenticationClient', () {
+  group('UserRepository', () {
     test('can be instantiated', () {
-      // expect(AuthenticationClient(), isNotNull);
     });
   });
 }
