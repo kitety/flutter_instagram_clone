@@ -23,7 +23,7 @@ dependencies:
   form_fields: 
     path: 'packages/form_fields'
   get_it: '^7.7.0'
-  google_sign_in: '^6.2.1'
+  google_sign_in: ^6.2.2
   intl: '^0.19.0'
   powersync_repository: 
     path: 'packages/powersync_repository'
